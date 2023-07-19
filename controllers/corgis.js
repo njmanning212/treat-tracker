@@ -10,6 +10,17 @@ const create = async (req, res) => {
   }
 }
 
+const index = async (req, res) => {
+  try {
+    const corgis = await Corgi.findAll()
+    res.status(200).json(corgis)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 module.exports = {
   create,
+  index,
 }
