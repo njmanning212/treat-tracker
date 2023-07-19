@@ -42,9 +42,21 @@ const update = async (req, res) => {
   }
 }
 
+const corgiDelete = async (req, res) => {
+  try {
+    const corgi = await Corgi.findByPk(req.params.id)
+    await corgi.destroy()
+    res.status(200).json(corgi)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 module.exports = {
   create,
   index,
   show,
   update,
+  delete: corgiDelete,
 }
