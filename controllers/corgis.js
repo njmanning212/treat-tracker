@@ -20,7 +20,18 @@ const index = async (req, res) => {
   }
 }
 
+const show = async (req, res) => {
+  try {
+    const corgi = await Corgi.findByPk(req.params.id)
+    res.status(200).json(corgi)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 module.exports = {
   create,
   index,
+  show,
 }
